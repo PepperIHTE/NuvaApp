@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package version="0.0.0" uuid="nuvaapp-615da5">
+ <names>
+  <name lang="en_US">Nuva</name>
+ </names>
+ <supportedLanguages>
+  <language>en_US</language>
+  <language>fi_FI</language>
+ </supportedLanguages>
+ <descriptionLanguages>
+  <language>en_US</language>
+  <language>fi_FI</language>
+ </descriptionLanguages>
+ <contents>
+  <behaviorContent path="behavior_1">
+   <userRequestable/>
+   <nature>interactive</nature>
+   <names>
+    <name lang="en_US">Nuva</name>
+   </names>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="Twitter">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="Kysely">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+ </contents>
+</package>

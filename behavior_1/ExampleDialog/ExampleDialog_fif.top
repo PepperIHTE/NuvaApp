@@ -1,0 +1,16 @@
+topic: ~ExampleDialog()
+language: fif
+
+concept:(greeting) [hei moi terve moro morjens]
+concept:(thanks) [kiitos kiitti]
+concept:(confirmation) [kyllä joo toki jep]
+concept:(denial) [ei]
+
+u:(e:onStart) $html="index.html"
+u:(["miten menee" "kuis hurisee" "kuinka voit"]) hyvin, kiitos kysymästä!
+u:(["kuka olet" "mikä on nimesi" "mikä olet"]) ["Minä olen" Olen "nimeni on"] Pepper
+u:(["Mitä osaat" "mitä voit tehdä" "Mitä osaat tehdä"]) Voin jutella, tviitata ja esittää kyselyn
+
+u:(e:nuva/twitter) $behaviour="Twitter"
+u:(e:nuva/kysely) $behaviour="Kysely"
+u:(e:nuva/exit) $onStopped=1

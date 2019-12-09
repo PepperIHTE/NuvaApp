@@ -1,0 +1,19 @@
+topic: ~twitter_topic()
+language: fif
+
+u:(["lisää teksti" "lisää tviitti" "uusi tviitti"]) Sano tviitin teksti. $record=1
+    u1:(*) $stop_record=1
+    
+u:(["poista teksti"]) Tviitin teksti poistettu $cancel_text=1
+ 
+u:(["ota kuva" "lisää kuva" kuva]) Kolme. Kaksi. Yksi. $take_picture=1 
+
+u:("poista kuva") $cancel_picture=1 Kuva on poistettu tviitistä
+    
+u:(["poista tviitti" peruuta poista]) Tviitti on poistettu $cancel=1
+
+u:([tviittaa "lähetä tviitti"]) $tweet=1
+
+u:(e:nuva/help) Sinun täytyy lisätä twiittiin kuva, teksti, tai molemmat
+
+u:(["miten tämä toimii" "mitä pitää tehdä"]) Tviitti tarvitsee tekstin tai kuvan. Voit lisätä tekstin sanomalla \pau=400\ lisää teksti \pau=400\ jonka jälkeen pyydän sinua sanomaan tviitin tekstin.\pau=1000\ voit lisätä kuvan sanomalla \pau=400\ lisää kuva \pau=400\ jonka jälkeen otan kuvan ja liitän sen tviittiin. Jos tviitissä on teksti tai kuva, ne voidaan myös poistaa.

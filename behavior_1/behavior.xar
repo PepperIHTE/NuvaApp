@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ChoregrapheProject xmlns="http://www.ald.softbankrobotics.com/schema/choregraphe/project.xsd" xar_version="3">
+  <Box name="root" id="-1" localization="8" tooltip="Root box of Choregraphe&apos;s behavior. Highest level possible." x="0" y="0">
+    <bitmap>media/images/box/root.png</bitmap>
+    <script language="4">
+      <content>
+        <![CDATA[]]>
+      </content>
+    </script>
+    <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+    <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+    <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+    <Input name="nuva/kysely" type="0" type_size="1" nature="4" stm_value_name="nuva/kysely" inner="1" tooltip="nuva/kysely desc" id="4" />
+    <Input name="nuva/twitter" type="0" type_size="1" nature="4" stm_value_name="nuva/twitter" inner="1" tooltip="nuva/twitter desc" id="5" />
+    <Input name="nuva/exit" type="0" type_size="1" nature="4" stm_value_name="nuva/exit" inner="1" tooltip="nuva/exit desc" id="6" />
+    <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="7" />
+    <Timeline enable="0">
+      <BehaviorLayer name="behavior_layer1">
+        <BehaviorKeyframe name="keyframe1" index="1">
+          <Diagram>
+            <Box name="Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="140" y="23">
+              <dialogFile>ExampleDialog/ExampleDialog.dlg</dialogFile>
+              <bitmap>media/images/box/box-dialog.png</bitmap>
+              <script language="4">
+                <content>
+                  <![CDATA[]]>
+                </content>
+              </script>
+              <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+              <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+              <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+              <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+              <Output name="behaviour" type="3" type_size="1" nature="2" inner="0" tooltip="" id="5" />
+              <Output name="html" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+              <Resource name="Speech" type="Lock" timeout="0" />
+              <Resource name="Speech recognition" type="Lock" timeout="0" />
+            </Box>
+            <Box name="Show Web View" id="8" localization="8" tooltip="Shows the webview (html content) on the tablet.&#x0A;&#x0A;V1.0.0&#x0A;" x="141" y="182">
+              <bitmap>media/images/box/internet/internet.png</bitmap>
+              <script language="4">
+                <content>
+                  <![CDATA[
+
+class MyClass(GeneratedClass):
+
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        pass
+
+    def onUnload(self):
+        pass
+
+    def _getTabletService(self):
+        tabletService = None
+        try:
+            tabletService = self.session().service("ALTabletService")
+        except Exception as e:
+            self.logger.error(e)
+        return tabletService
+
+    def _getAbsoluteUrl(self, partial_url):
+        import os
+        subPath = os.path.join(self.packageUid(), os.path.normpath(partial_url).lstrip("\\/"))
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        return "http://%s/apps/%s" %(self._getTabletService().robotIp(), subPath.replace(os.path.sep, "/"))
+
+    def onInput_onStart(self, url):
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        tabletService = self._getTabletService()
+        if tabletService:
+            try:
+                if url == '':
+                    self.logger.error("URL of the image is empty")
+                if not url.startswith('http'):
+                    url = self._getAbsoluteUrl(url)
+                self.logger.info(url)
+                tabletService.showWebview()
+                tabletService.loadUrl(url)
+            except Exception as err:
+                self.logger.error("Error during ShowImage : %s " % err)
+                self.onStopped()
+        else:
+            self.logger.warning("ALTabletService not found.")
+        self.onStopped()]]>
+                </content>
+              </script>
+              <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+              <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+              <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
+            </Box>
+            <Box name="StartBehaviour" id="1" localization="0" tooltip="Starts the behavior of the name given as input." x="337" y="41">
+              <bitmap>media/images/box/box-diagram.png</bitmap>
+              <script language="4">
+                <content>
+                  <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        #~ puts code for box initialization here
+        pass
+
+    def onUnload(self):
+        #~ puts code for box cleanup here
+        pass
+
+    def onInput_startBehavior(self, p):
+        bm = self.session().service("ALBehaviorManager")
+        bm.startBehavior(p)
+        self.onBehaviorStarted(p) #~ activate output of the box]]>
+                </content>
+              </script>
+              <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+              <Input name="startBehavior" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+              <Output name="onBehaviorStarted" type="3" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. Recalls the behavior name." id="3" />
+              <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Triggered if an error occurs at behavior start." id="4" />
+            </Box>
+            <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="2" />
+            <Link inputowner="8" indexofinput="2" outputowner="3" indexofoutput="6" />
+            <Link inputowner="1" indexofinput="2" outputowner="3" indexofoutput="5" />
+            <Link inputowner="3" indexofinput="3" outputowner="3" indexofoutput="5" />
+            <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="6" />
+          </Diagram>
+        </BehaviorKeyframe>
+      </BehaviorLayer>
+    </Timeline>
+  </Box>
+</ChoregrapheProject>

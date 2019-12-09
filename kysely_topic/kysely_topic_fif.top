@@ -1,0 +1,15 @@
+topic: ~kysely_topic()
+language: fif
+
+u:(e:onStart) $html=1 Tervetuloa Pepperin suureen vaikuttamiskyselyyn! Minulla on esitettävänä muutama paikalliseen ja valtakunnalliseen vaikuttamiseen liittyvää kysymystä joihin kaipaan vastauksia. Aloitetaan. $html=1 ^gotoReactivate(q1)
+
+proposal: %q1 Ensimmäinen kysymys. Miten Tampereen kouluruokaa tulisi kehittää? \pau=500\ Enemmän kasvisruokaa. Enemmän liharuokaa. Vai enemmän omia eväitä?
+    u:(e:nuva/kysely_qi_ans) $html=1 ^gotoReactivate(q2)
+
+proposal: %q2 Toinen kysymys. Mihin seuraavista haasteista uuden hallituksen tulisi keskittyä ensimmäisenä? \pau=500\ Kansainvälinen terrorismi. Ihmisestä johtuva ilmastonmuutos. Vai nuorten syrjäytyminen.
+    u:(e:nuva/kysely_qii_ans) $html=1 ^gotoReactivate(q3)
+
+proposal: %q3 Kolmas kysymys. Mitä mieltä olet Tampereen tulevasta ratikasta? \pau=500\ Hyvä ja hyödyllinen. Huono ja kallis. \pau=300\ Et ota kantaa.
+    u:(e:nuva/kysely_qiii_ans) $html=1 ^gotoReactivate(end)
+    
+proposal: %end Kiitos vastauksista! ^start(animations/Stand/Gestures/BowShort_1)
